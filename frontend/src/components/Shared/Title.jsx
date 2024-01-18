@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 
 const Title=({title})=>{
     return(
@@ -10,6 +10,6 @@ const Title=({title})=>{
     )
 }
 
-Title.PropTypes={title:PropTypes.string}
+Title.propTypes={title:propTypes.string}
 
 export default Title;
