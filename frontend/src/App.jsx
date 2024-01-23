@@ -6,6 +6,8 @@ import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import { HomePage } from './Pages/homePage'
 import Header from './components/Shared/Header'
+import SignIn from './Pages/signIn.jsx'
+import SignUp from './Pages/signUp.jsx'
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Container className='mt-3'>
           <Routes>
             <Route path = "/" element = {<HomePage/>}></Route>
+            <Route path = "/signin" element = {<SignIn/>}></Route>
+            <Route path = "/signUp" element = {<SignUp/>}></Route>
           </Routes>
         </Container>
       </main>

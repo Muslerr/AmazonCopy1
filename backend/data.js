@@ -424,7 +424,7 @@ const data = {
       price: 14.0,
       description: "Just a cute one. fits for you, fo' sure.",
       category: "Jewelery",
-      image: "https://img.fruugo.com/product/1/41/665359411_max.jpg",
+      image: "https://th.bing.com/th/id/OIP.Sqm6kNRvBbZnG940uk1LggHaHa?rs=1&pid=ImgDetMain",
       countInStock: 55,
       token: "Cute, Premium Brooch",
       brand: "Balenciaga",
