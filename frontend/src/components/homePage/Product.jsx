@@ -2,8 +2,16 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import {Button,Link} from '../../imports';
 import Rating from '../Shared/Rating';
+import { useContext } from 'react';
+import { Store } from '../../Store';
+import axios from 'axios';
+import { addToCartHandler } from '../../utils';
+
 
 const Product = ({product}) => {
+  const {state,dispatch:ctxDispatch}=useContext(Store);
+  const { cart } = state;
+  const { cartItems } = cart;
   return (
     <Card className='product-card mb-4'>
         <Link to={`/product/${product.token}`}>
@@ -15,12 +23,12 @@ const Product = ({product}) => {
             </Link>
             <Rating rating={product.rating.rate} numReviews={product.rating.count}/>
             <Card.Text>${product.price}</Card.Text>
-            {product.countInStock===0?<Button variant='light' disabled>Out of Stock</Button>:
-            <Button className='btn-primary'>Add to Cart</Button>}
+            {product.countInStock === 0?<Button variant='light' disabled>Out of Stock</Button>:
+            <Button className='btn-primary' onClick={()=>{addToCartHandler(product,cartItems,ctxDispatch)}}>Add to Cart</Button>}
         </Card.Body>
     </Card>
   )
-}
 
+}
 Product.propTypes = {product: PropTypes.object}
 export default Product

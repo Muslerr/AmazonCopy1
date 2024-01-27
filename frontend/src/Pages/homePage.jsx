@@ -19,8 +19,7 @@ export const HomePage=() =>{
         dispatch({type:GET_REQUEST});
          try {
             const {data} = await axios.get('/api/v1/products');
-            dispatch({type:GET_SUCCESS,payload:data});
-            console.log(state.data);
+            dispatch({type:GET_SUCCESS,payload:data});            
          } catch (error) {
             dispatch({type:GET_FAIL,payload:error});
             console.log(error.message);

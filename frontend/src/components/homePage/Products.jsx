@@ -1,6 +1,7 @@
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 import Product from './Product.jsx';
+import Col from 'react-bootstrap/Col';
 
 const Products = ({products}) => {
   return (
