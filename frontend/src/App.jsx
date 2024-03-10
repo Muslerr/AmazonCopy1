@@ -6,8 +6,8 @@ import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import { HomePage } from './Pages/homePage'
 import Header from './components/Shared/Header'
-import SignIn from './Pages/signIn.jsx'
-import SignUp from './Pages/signUp.jsx'
+import SignIn from './Pages/SignIn.jsx'
+import SignUp from './Pages/SignUp.jsx'
 import {ToastContainer} from 'react-toastify'
 import Description from './Pages/Description.jsx';
 import Cart from './Pages/Cart.jsx';
