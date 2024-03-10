@@ -1,7 +1,7 @@
 import NavBar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBox from "./SearchBox";
 import { NavDropdown } from "../../imports";
 import { useContext } from "react";
@@ -14,6 +14,8 @@ const Header = () => {
   const { state,dispatch:ctxDispatch } = useContext(Store);
   const { userInfo,cart } = state;
   const { cartItems } = cart;
+  const navigate=useNavigate();
+  const location=useLocation();
   const signOutHandler=()=>{
     ctxDispatch({type:USER_SIGNOUT});
     localStorage.removeItem("userInfo");
@@ -25,6 +27,9 @@ const Header = () => {
     <header>
       <NavBar bg="dark" variant="dark">
         <Container>
+        <Link onClick={() => navigate(-1)}>
+                            {location.pathname !== '/' && <i className="fa fa-arrow-left fa-2x  text-white align-arrow-right"> </i> }
+          </Link>
           <LinkContainer to="/">
             <NavBar.Brand>
               <img

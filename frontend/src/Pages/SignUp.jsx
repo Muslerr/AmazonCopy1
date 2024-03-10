@@ -8,14 +8,21 @@ import { getError } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import { USER_SIGNIN } from "../actions";
+import { useLocation } from "react-router-dom";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [name, setName] = useState("");
-  const navigate = useNavigate();
-  const { dispatch: ctxDispatch } = useContext(Store);
+  const navigate = useNavigate(); 
+  const {state, dispatch: ctxDispatch } = useContext(Store);
+  const{search} = useLocation();
+  const redirectUrl= new URLSearchParams(search);
+  const redirectValue=redirectUrl.get("redirect");
+  const redirect =redirectValue ? redirectValue : "/";
+
+  
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -28,7 +35,7 @@ const SignUp = () => {
       });
       ctxDispatch({ type: USER_SIGNIN, payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate("/");
+      navigate(redirect);
     } catch (error) {
       toast.error(getError(error));
     }}else{
@@ -81,7 +88,7 @@ const SignUp = () => {
           <Button type="submit">Sign Up</Button>
         </div>
         <div className="mb-3">
-          Already have an account? <Link to="/signin">Sign In</Link>
+          Already have an account? <Link to={`/signin?redirect=${redirect}`}>Sign In</Link>
         </div>
         
       </Form>

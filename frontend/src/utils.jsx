@@ -4,7 +4,10 @@ import axios from "axios";
 
 
 const getError = (error) => {
-    return error.message && error.response.data.message ? error.response.data.message : error.message
+    if(error && error.response)
+     { return error.message && error.response.data.message ? 
+      error.response.data.message : error.message}
+      else return "an error happened"
 };
 const addToCartHandler =  async (product, cartItems, ctxDispatch) => {    
     const existedItem = cartItems.find((x) => x._id === product._id);
@@ -20,8 +23,7 @@ const addToCartHandler =  async (product, cartItems, ctxDispatch) => {
         
            
            return;
-       }
-       
+       }      
        ctxDispatch({ type: ADD_TO_CART, payload: { ...product, quantity } });
        
    } catch (err) {
@@ -29,4 +31,26 @@ const addToCartHandler =  async (product, cartItems, ctxDispatch) => {
    }
 };
 
-export {getError,addToCartHandler};
+
+const getFilterURI = (searchFromURI, filter, skipPathName) => {
+    const searchParams=new URLSearchParams(searchFromURI);
+    const category= searchParams.get('category') || 'all';
+    const price= searchParams.get('price') || 'all';
+    const rating= searchParams.get('rating') || 'all';
+    const order= searchParams.get('order') || 'newest';
+    const page= searchParams.get('page') || '1';
+    const query= searchParams.get('query') || 'all';
+
+    const filterCategory= filter.category || category;
+    const filterPage= filter.page|| page;
+    const filterPrice= filter.price|| price;
+    const filterRating= filter.rating|| rating;
+    const filterQuery= filter.query|| query;
+    const filterOrder= filter.order|| order;
+
+    const link = `${skipPathName? "": "/search?"}category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${filterOrder}&page=${filterPage}`
+
+    return link;
+  };
+
+export {getError,addToCartHandler,getFilterURI};
